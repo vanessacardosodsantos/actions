@@ -3,7 +3,7 @@ name: Implantar no AWS
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   implantar:
