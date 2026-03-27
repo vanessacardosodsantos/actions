@@ -14,7 +14,7 @@ jobs:
 
     - name: Implantar no Heroku
       uses: akhileshns/heroku-deploy@v3.12.12
-      with:
+      with:  #oken de autenticação do Heroku Deve ser configurado em: GitHub → Settings → Secrets → Actions
         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
         heroku_app_name: "nome-do-seu-app"
         heroku_email: "seu-email@example.com"
