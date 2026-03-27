@@ -3,7 +3,7 @@ name: Implantar no Heroku
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   implantar:
