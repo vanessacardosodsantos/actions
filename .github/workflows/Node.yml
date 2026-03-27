@@ -1,23 +1,23 @@
 name: CI para Node.js
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
+on: #palavra-chave para eventos que disparam o pipeline
+  push:  #Executa quando há commit/push
+    branches: [ master ] #exclusivo para master
+  pull_request: #Executa quando um PR é aberto/atualizado
     branches: [ master ]
 
-jobs:
+jobs: #Um workflow é composto por jobs. Cada job roda em uma máquina (runner) separada
   construir:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest #Roda numa VM Linux Ubuntu
 
     strategy:
-      matrix:
+      matrix: #Execução em múltiplos cenários - Aqui: só Node 14 Mas poderia ser: [14.x, 16.x]
         node-version: [14.x]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Usar Node.js ${{ matrix.node-version }}
+    - uses: actions/checkout@v2 #Baixa o código do repositório para a máquina. usa uma action pronta
+    - name: Usar Node.js ${{ matrix.node-version }} #instala o nome na versão definida
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
