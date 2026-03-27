@@ -1,0 +1,21 @@
+name: Implantar no Azure
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  construir-e-implantar:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Login via módulo Az
+      run: |
+        az login --service-principal -u ${{ secrets.AZURE_SERVICE_APP_ID }} -p ${{ secrets.AZURE_SERVICE_PASSWORD }} --tenant ${{ secrets.AZURE_SERVICE_TENANT_ID }}
+
+    - name: Implantar no Azure
+      run: |
+        az webapp up --name <nome-do-app> --location <localização> --sku <sku>
